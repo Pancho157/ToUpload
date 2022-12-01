@@ -1,8 +1,6 @@
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
-const configs = JSON.parse(process.env.CONFIGS);
-
 // VkCAVriXGpPzWpc3
 
 const Session = session({
@@ -10,7 +8,7 @@ const Session = session({
     mongoUrl: process.env.MONGO_URL,
   }),
   secret: "mongoSecret",
-  resave: false,
+  resave: true,
   saveUninitialized: false,
   rolling: true,
   cookie: {
