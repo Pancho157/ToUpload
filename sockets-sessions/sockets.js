@@ -9,7 +9,7 @@ async function sockets(io) {
     socket.emit("messagesFromServer", await chatDao.getMessages());
 
     socket.on("new-message", async (data) => {
-      await chatDao.insertMessage(newMessage);
+      await chatDao.insertMessage(data);
       io.sockets.emit("messagesFromServer", await chatDao.getMessages());
     });
 
