@@ -18,12 +18,13 @@ const MessageSchema = mongoose.Schema(
       ),
     ],
   },
+
   { _id: false, timestamps: true } // CreatedAt y UpdatedAt
 );
 
 let Message = mongoose.model("messages", MessageSchema);
 
-// --------------------- Messages Schema & Model ------------------------
+// --------------------- Users Schema & Model ------------------------
 const UserSchema = mongoose.Schema(
   {
     alias: {
@@ -44,9 +45,48 @@ const UserSchema = mongoose.Schema(
       minlength: [6, "La contraseña debe tener 6 caracteres como mínimo"],
     },
   },
+
   { timestamps: false, versionKey: false }
 );
 
 let Users = mongoose.model("users", UserSchema);
 
-module.exports = { Message, Users };
+// --------------------- Products Schema & Model ------------------------
+
+const ProductSchema = mongoose.Schema(
+  {
+    _id: {
+      type: String,
+      getter: function (val) {
+        return this._id.toString();
+      },
+      unique: true,
+    },
+    title: {
+      type: String,
+      required: [true, "Title is required"],
+      unique: true,
+      dropDups: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+      min: 1,
+    },
+    thumbnail: {
+      type: String,
+      required: [true, "Thumbnail is required"],
+    },
+    stock: {
+      type: Number,
+      required: true,
+      min: 1,
+    },
+  },
+
+  { timestamps: false, versionKey: false }
+);
+
+let Products = mongoose.model("products", ProductSchema);
+
+module.exports = { Message, Users, ProductSchema };
