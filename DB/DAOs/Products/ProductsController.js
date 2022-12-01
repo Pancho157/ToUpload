@@ -1,84 +1,68 @@
-const knexLib = require("knex");
+const { Products } = require("../../utils/Mongoose-Schemas_Models");
 const { logger } = require("../../../loggers/log4js-config");
 
 class ProductosSQL {
-  constructor(config) {
-    this.knex = knexLib(config);
-    this.createTable();
-  }
-
-  async createTable() {
-    try {
-      return await this.knex.schema.hasTable("products").then((exists) => {
-        if (!exists) {
-          return this.knex.schema.createTable("products", (table) => {
-            table.increments("id").primary();
-            table.string("title", 50).notNullable();
-            table.float("price").notNullable();
-            table.string("thumbnail").notNullable();
-            table.integer("stock").notNullable();
-          });
-        } else {
-          return "Ya exite la tabla products";
-        }
-      });
-    } catch (err) {
-      logger.error(`Error: ${err}`);
-    }
-  }
+  constructor() {}
 
   async insertProduct(data) {
     try {
-      return await this.knex("products").insert(data);
+      await Products.create({
+        _id: data.id,
+        stock: data.title,
+        price: data.price,
+        thumbnail: data.thumbnail,
+        stock: data.stock,
+      });
     } catch (err) {
-      logger.error(`Error: ${err}`);
+      logger.error(`Products Error: ${err}`);
     }
   }
 
   async updateById(productId, data) {
+    const { title, price, thumbnail, stock } = data;
+    const dataToUpdate = {};
+
+    if (title) dataToUpdate.title = title;
+    if (price) dataToUpdate.price = price;
+    if (thumbnail) dataToUpdate.thumbnail = thumbnail;
+    if (stock) dataToUpdate.stock = stock;
+
     try {
-      return await this.knex("products").where({ id: productId }).update(data);
+      const updated = await Products.findByIdAndUpdate(productId, {
+        dataToUpdate,
+      });
+
+      return `Producto (id = ${productId}) actualizado`;
     } catch (err) {
-      logger.error(`El error es: ${err}`);
+      logger.error(`Products Error: ${err}`);
     }
   }
 
   async getProducts() {
     try {
-      return await this.knex("products").select("*");
+      const allProducts = await Products.find();
+      return allProducts;
     } catch (err) {
-      logger.error(`Error: ${err}`);
+      logger.error(`Products Error: ${err}`);
     }
   }
 
   async getProductById(productId) {
     try {
-      return await this.knex("products")
-        .select("id", "title", "price", "thumbnail", "stock")
-        .where({ id: productId });
+      const product = await Products.findOne({ _id: productId });
+      return product;
     } catch (err) {
-      logger.error(`Error: ${err}`);
+      logger.error(`Products Error: ${err}`);
     }
   }
 
   async deleteById(productId) {
     try {
-      await this.knex("products")
-        .where({
-          id: productId,
-        })
-        .del();
-      return "Producto eliminado";
-    } catch (err) {
-      logger.error(`Error: ${err}`);
-    }
-  }
+      const deleted = await Products.deleteOne({ _id: productId });
 
-  async deleteAll() {
-    try {
-      return await this.knex("products").del();
+      if (deleted) return `Producto (id = ${productId}) eliminado`;
     } catch (err) {
-      logger.error(`Error: ${err}`);
+      logger.error(`Products Error: ${err}`);
     }
   }
 }
