@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "mongoStart": "mongod --dbpath '/DB/mongo'",
     "test": "node benchmark.js",
     "0x": "0x index.js"
   },
