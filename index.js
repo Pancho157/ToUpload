@@ -91,7 +91,7 @@ if (modo.toLowerCase() == "cluster" && cluster.isPrimary) {
     connectToMongo();
     // console.log("Connected to mongo successfully");
   } catch (err) {
-    console.log(err);
+    logger.warn(err);
   }
 
   // ----------------------- Passport & Sessions -----------------------
