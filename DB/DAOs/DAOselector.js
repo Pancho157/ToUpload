@@ -3,6 +3,7 @@ const { ProductosSQL } = require("./Products/ProductsController");
 // Por defecto FS
 
 const configs = JSON.parse(process.env.CONFIGS);
+// console.log(configs)
 let productsDao = new ProductosSQL(configs.mariadb);
 let chatDao;
 

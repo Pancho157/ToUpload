@@ -6,9 +6,6 @@ function connectToMongo() {
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    },
-    () => {
-      console.log("Connected to mongo successfully");
     }
   );
 }
