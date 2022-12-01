@@ -87,7 +87,12 @@ if (modo.toLowerCase() == "cluster" && cluster.isPrimary) {
   app.use(express.static(__dirname + "/public"));
 
   // -----------------------  Conección a Mongo -----------------------
-  connectToMongo();
+  try {
+    connectToMongo();
+    // console.log("Connected to mongo successfully");
+  } catch (err) {
+    console.log(err);
+  }
 
   // ----------------------- Passport & Sessions -----------------------
   app.use(Session);
@@ -108,7 +113,9 @@ if (modo.toLowerCase() == "cluster" && cluster.isPrimary) {
 
   // ----------------------- Error 404 -----------------------
   app.use((req, res) => {
-    logger.warn(`Bad request - Route: "${req.originalUrl}", Method: "${req.method}"`);
+    logger.warn(
+      `Bad request - Route: "${req.originalUrl}", Method: "${req.method}"`
+    );
     res.status(404).send("No se encontró la página que estás buscando");
   });
 }
