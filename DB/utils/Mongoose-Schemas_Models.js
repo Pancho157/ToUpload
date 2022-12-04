@@ -55,13 +55,6 @@ let Users = mongoose.model("users", UserSchema);
 
 const ProductSchema = mongoose.Schema(
   {
-    _id: {
-      type: String,
-      getter: function (val) {
-        return this._id.toString();
-      },
-      unique: true,
-    },
     title: {
       type: String,
       required: [true, "Title is required"],

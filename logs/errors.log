@@ -32,3 +32,4 @@
   address: '::',
   port: 8080
 }
+[2022-12-02T21:48:34.765] [ERROR] prod - Products Error: ValidationError: _title: Title is required

@@ -1,10 +1,10 @@
-const { ProductosSQL } = require("./Products/ProductsController");
+const { ProductsMongoAtlas } = require("./Products/ProductsController");
 
 // Por defecto FS
 
 const configs = JSON.parse(process.env.CONFIGS);
 // console.log(configs)
-let productsDao = new ProductosSQL(configs.mariadb);
+let productsDao = new ProductsMongoAtlas(configs.mariadb);
 let chatDao;
 
 switch (process.env.PERS) {

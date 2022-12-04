@@ -1,14 +1,13 @@
 const { Products } = require("../../utils/Mongoose-Schemas_Models");
 const { logger } = require("../../../loggers/log4js-config");
 
-class ProductosSQL {
+class ProductsMongoAtlas {
   constructor() {}
 
   async insertProduct(data) {
     try {
       await Products.create({
-        _id: data.id,
-        stock: data.title,
+        title: data.title,
         price: data.price,
         thumbnail: data.thumbnail,
         stock: data.stock,
@@ -67,4 +66,4 @@ class ProductosSQL {
   }
 }
 
-module.exports = { ProductosSQL };
+module.exports = { ProductsMongoAtlas };

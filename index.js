@@ -14,6 +14,7 @@ const { engine } = require("express-handlebars");
 const userInterfaces = require("./routes/userInterfaces");
 const { info } = require("./routes/info");
 const { apiRandoms } = require("./routes/apiRandoms");
+const { apiProducts } = require("./routes/apiProducts");
 
 // BBDDs
 const { sockets } = require("./sockets-sessions/sockets");
@@ -110,6 +111,7 @@ if (modo.toLowerCase() == "cluster" && cluster.isPrimary) {
   app.use("/", userInterfaces);
   app.use("/", info);
   app.use("/api", apiRandoms);
+  app.use("/api", apiProducts);
 
   // ----------------------- Error 404 -----------------------
   app.use((req, res) => {
