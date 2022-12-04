@@ -42,3 +42,5 @@
 [2022-12-04T11:18:04.479] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
 [2022-12-04T11:19:12.679] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
 [2022-12-04T11:21:36.428] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:26:57.697] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:27:30.185] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
