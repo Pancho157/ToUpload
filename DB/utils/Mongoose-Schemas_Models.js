@@ -55,11 +55,12 @@ let Users = mongoose.model("users", UserSchema);
 
 const ProductSchema = mongoose.Schema(
   {
+    _id: {
+      type: Number,
+    },
     title: {
       type: String,
       required: [true, "Title is required"],
-      unique: true,
-      dropDups: true,
     },
     price: {
       type: Number,
@@ -72,7 +73,7 @@ const ProductSchema = mongoose.Schema(
     },
     stock: {
       type: Number,
-      required: true,
+      required: [true, "Stock is required"],
       min: 1,
     },
   },

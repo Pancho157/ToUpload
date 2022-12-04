@@ -33,3 +33,12 @@
   port: 8080
 }
 [2022-12-02T21:48:34.765] [ERROR] prod - Products Error: ValidationError: _title: Title is required
+[2022-12-04T11:07:27.123] [ERROR] prod - Products Error: ValidationError: _id: Cast to ObjectId failed for value "2" (type number) at path "_id" because of "BSONTypeError"
+[2022-12-04T11:10:11.643] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:10:42.121] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _id_ dup key: { _id: "2" }
+[2022-12-04T11:12:50.706] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: title_1 dup key: { title: "Nuevo producto" }
+[2022-12-04T11:13:02.299] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:13:19.648] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:18:04.479] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:19:12.679] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:21:36.428] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }

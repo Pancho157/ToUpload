@@ -2,11 +2,22 @@ const { Products } = require("../../utils/Mongoose-Schemas_Models");
 const { logger } = require("../../../loggers/log4js-config");
 
 class ProductsMongoAtlas {
-  constructor() {}
+  constructor() {
+    this.lastId = this.getLastId();
+  }
+
+  async getLastId() {
+    const foundId = await Products.find().sort({ _id: -1 }).limit(1);
+    foundId[0] ? (this.lastId = foundId[0]._id) : (this.lastId = 1);
+    console.log(this.lastId);
+  }
 
   async insertProduct(data) {
+    this.lastId++;
+
     try {
       await Products.create({
+        _id: this.lastId,
         title: data.title,
         price: data.price,
         thumbnail: data.thumbnail,
